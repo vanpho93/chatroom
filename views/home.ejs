@@ -2,11 +2,38 @@
 <html lang="en">
     <head>
         <title>Chat</title>
+        <style>
+            #div-list {
+                display: flex;
+                flex-direction: row;
+            }
+        </style>
     </head>
     <body>
-        <input placeholder="Enter your number" id="txtMessage"/>
-        <br><br>
-        <button id="btnSend">Send number</button>
+        <div id="div-sign-up">
+            <input placeholder="Enter your username" id="txtUsername"/>
+            <br><br>
+            <button id="btnSignUp">Sign Up</button>
+        </div>
+        <div id="div-chat">
+            <input placeholder="Enter your message" id="txtMessage"/>
+            <br><br>
+            <button id="btnSend">Send Message</button>
+            <div id="div-list">
+                <ul id="onlineUser">
+                    <li>pho</li>
+                    <li>phat</li>
+                    <li>thanh</li>
+                    <li>dai</li>
+                </ul>
+                <ul id="listMessage">
+                    <li>pho: 1iesjdbajnd</li>
+                    <li>phat: 1iesjdbajnd</li>
+                    <li>thanh: 1iesjdbajnd</li>
+                    <li>dai: 1iesjdbajnd</li>
+                </ul>
+            </div>
+        </div>
     </body>
     <script src="bundle.js"></script>
 </html>
