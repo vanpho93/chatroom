@@ -26,7 +26,10 @@ io.on('connection', socket => {
     });
 
     socket.on('disconnect', () => {
+        if (!socket.username) return;
         io.emit('AI_DO_NGAT_KET_NOI', socket.username);
+        const index = arrUsername.indexOf(socket.username);
+        arrUsername.splice(index, 1);
     });
 
     socket.on('CLIENT_GUI_TIN', message => {
