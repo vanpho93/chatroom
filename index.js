@@ -22,5 +22,7 @@ io.on('connection', socket => {
         arrUsername.push(username);
         socket.emit('XAC_NHAN_DANG_KY', true);
         socket.emit('DANH_SACH_USER_ONLINE', arrUsername);
+        socket.broadcast.emit('NGUOI_DUNG_MOI', username);
+        console.log(arrUsername.length);
     });
 });
