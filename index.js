@@ -21,5 +21,6 @@ io.on('connection', socket => {
         if (isExist) return socket.emit('XAC_NHAN_DANG_KY', false);
         arrUsername.push(username);
         socket.emit('XAC_NHAN_DANG_KY', true);
+        socket.emit('DANH_SACH_USER_ONLINE', arrUsername);
     });
 });
