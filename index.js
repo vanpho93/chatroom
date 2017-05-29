@@ -15,14 +15,21 @@ server.listen(3000, () => console.log('Server started!'));
 const arrUsername = [];
 
 io.on('connection', socket => {
-    console.log(socket.id);
     socket.on('DANG_KY_USERNAME', username => {
         const isExist = arrUsername.indexOf(username) !== -1;
         if (isExist) return socket.emit('XAC_NHAN_DANG_KY', false);
+        socket.username = username;// eslint-disable-line
         arrUsername.push(username);
         socket.emit('XAC_NHAN_DANG_KY', true);
         socket.emit('DANH_SACH_USER_ONLINE', arrUsername);
         socket.broadcast.emit('NGUOI_DUNG_MOI', username);
-        console.log(arrUsername.length);
+    });
+
+    socket.on('disconnect', () => {
+        io.emit('AI_DO_NGAT_KET_NOI', socket.username);
+    });
+
+    socket.on('CLIENT_GUI_TIN', message => {
+        io.emit('TIN_NHAN_MOI', `${socket.username}: ${message}`);
     });
 });

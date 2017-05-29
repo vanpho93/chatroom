@@ -18,15 +18,25 @@ socket.on('XAC_NHAN_DANG_KY', isSuccess => {
 
     socket.on('DANH_SACH_USER_ONLINE', arrUsername => {
         arrUsername.forEach(e => {
-            $('#onlineUser').append(`<li>${e}</li>`);
+            $('#onlineUser').append(`<li id="${e}">${e}</li>`);
         });
     });
 
     socket.on('NGUOI_DUNG_MOI', username => {
-        $('#onlineUser').append(`<li>${username}</li>`);
+        $('#onlineUser').append(`<li id="${username}">${username}</li>`);
     });
 });
 
+socket.on('AI_DO_NGAT_KET_NOI', username => {
+    $(`#${username}`).remove();
+});
 
+socket.on('TIN_NHAN_MOI', message => {
+    $('#listMessage').append(`<li>${message}</li>`);
+});
 
+$('#btnSend').click(() => {
+    const message = $('#txtMessage').val();
+    socket.emit('CLIENT_GUI_TIN', message);
+});
 
