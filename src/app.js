@@ -7,7 +7,7 @@ let room = '';
 //init UI
 $('#div-chat').hide();
 
-const socket = io();
+const socket = io('http://localhost:3000');
 
 handleListOnlineUser(socket);
 
@@ -22,6 +22,8 @@ $('#btnSend').click(() => {
 
 $('#onlineUser').on('click', 'li', function () {
     username = $(this).text();
+    $('.red').removeClass('red');
+    $(this).addClass('red');
 });
 
 $('#listRoom').on('click', 'li', function () {
