@@ -3,6 +3,7 @@ const $ = require('jquery');
 const handleListOnlineUser = require('./xuLyDanhSach');
 
 let username = '';
+let room = '';
 //init UI
 $('#div-chat').hide();
 
@@ -21,4 +22,14 @@ $('#btnSend').click(() => {
 
 $('#onlineUser').on('click', 'li', function () {
     username = $(this).text();
+});
+
+$('#listRoom').on('click', 'li', function () {
+    room = $(this).text();
+    socket.emit('CLIENT_JOIN_ROOM', room);
+});
+
+$('#btnSendRoom').click(() => {
+    const message = $('#txtMessage').val();
+    socket.emit('TIN_NHAN_ROOM', { room, message });
 });

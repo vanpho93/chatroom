@@ -45,4 +45,11 @@ io.on('connection', socket => {
         const { id } = arrSocketInfo[index];
         socket.to(id).emit('TIN_NHAN_MOI', `${socket.username}: ${message}`);
     });
+
+    socket.on('CLIENT_JOIN_ROOM', room => socket.join(room));
+
+    socket.on('TIN_NHAN_ROOM', messageObject => {
+        const { room, message } = messageObject;
+        socket.to(room).emit('TIN_NHAN_MOI', `${socket.username}: ${message}`);
+    });
 });
