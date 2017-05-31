@@ -34,12 +34,15 @@ io.on('connection', socket => {
         arrUsername.splice(index, 1);
     });
 
-    socket.on('CLIENT_GUI_TIN', message => {
-        io.emit('TIN_NHAN_MOI', `${socket.username}: ${message}`);
-    });
+    // socket.on('CLIENT_GUI_TIN', message => {
+    //     io.emit('TIN_NHAN_MOI', `${socket.username}: ${message}`);
+    // });
 
-    socket.on('TIN_NHAN_RIENG', mesageObject => {
-        const { username, message } = mesageObject;
+    socket.on('TIN_NHAN_RIENG', messageObject => {
+        const { username, message } = messageObject;
         //TODO HERE
+        const index = arrSocketInfo.findIndex(e => e.username === username);
+        const { id } = arrSocketInfo[index];
+        socket.to(id).emit('TIN_NHAN_MOI', `${socket.username}: ${message}`);
     });
 });

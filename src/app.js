@@ -2,6 +2,7 @@ const io = require('socket.io-client');
 const $ = require('jquery');
 const handleListOnlineUser = require('./xuLyDanhSach');
 
+let username = '';
 //init UI
 $('#div-chat').hide();
 
@@ -15,10 +16,9 @@ socket.on('TIN_NHAN_MOI', message => {
 
 $('#btnSend').click(() => {
     const message = $('#txtMessage').val();
-    socket.emit('CLIENT_GUI_TIN', message);
+    socket.emit('TIN_NHAN_RIENG', { username, message });
 });
 
 $('#onlineUser').on('click', 'li', function () {
-    const username = $(this).text();
-    console.log(username);
+    username = $(this).text();
 });
