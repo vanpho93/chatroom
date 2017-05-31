@@ -18,3 +18,7 @@ $('#btnSend').click(() => {
     socket.emit('CLIENT_GUI_TIN', message);
 });
 
+$('#onlineUser').on('click', 'li', function () {
+    const username = $(this).text();
+    console.log(username);
+});
